@@ -18,8 +18,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="offset-7">
+        <div class="offset-6">
             <a href="inventory-list">View Inventory List</a>
+            <a href="invoice-create">Generate Invoice</a>
         </div>
     </div>
     <form method="post" action="inventory-add">

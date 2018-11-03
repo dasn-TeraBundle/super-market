@@ -3,10 +3,7 @@ package com.innova.smart.dao.impl;
 import com.innova.smart.beans.Product;
 import com.innova.smart.dao.ProductDAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +75,44 @@ public class ProductDAOImpl implements ProductDAO {
         }
 
         //System.out.println(products);
+        return products;
+    }
+
+    @Override
+    public List<Product> findAllIn(List<String> pIds) {
+        List<Product> products = new ArrayList<>();
+
+        try {
+            StringBuilder sql = new StringBuilder("SELECT * FROM Products WHERE id IN (");
+            for (int i = 0; i < pIds.size(); i++) {
+                sql.append("?");
+                if (i < pIds.size() - 1)
+                    sql.append(",");
+            }
+            sql.append(")");
+
+            try (PreparedStatement ps = conn.prepareCall(sql.toString())) {
+                for (int i = 0; i < pIds.size(); i++)
+                    ps.setString(i + 1, pIds.get(i));
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        Product p = new Product(
+                                rs.getString("name"),
+                                rs.getString("category"),
+                                rs.getString("supplier"),
+                                rs.getInt("quantity"),
+                                rs.getFloat("price"));
+                        p.setId(rs.getString("id"));
+                        products.add(p);
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
         return products;
     }
 }

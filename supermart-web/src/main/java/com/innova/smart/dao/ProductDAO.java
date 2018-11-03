@@ -14,4 +14,5 @@ public interface ProductDAO {
     Product update(Product product) throws SQLException;
 
     List<Product> findAll();
+    List<Product> findAllIn(List<String> pIds);
 }

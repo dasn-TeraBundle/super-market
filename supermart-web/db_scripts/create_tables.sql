@@ -28,4 +28,19 @@ CREATE TABLE Products (
   CONSTRAINT pk_products PRIMARY KEY (id),
   CONSTRAINT fk_products_suppliers FOREIGN KEY (supplier) REFERENCES Suppliers (id) ON DELETE CASCADE,
   CONSTRAINT fk_products_prdcat FOREIGN KEY (category) REFERENCES Product_Categories (id) ON DELETE CASCADE
+);
+
+CREATE TABLE Invoices (
+  id VARCHAR2(20),
+  billing_date TIMESTAMP,
+  CONSTRAINT pk_invoices PRIMARY KEY (id)
+);
+
+create TABLE Invoices_Products (
+  invoice_id VARCHAR2(20),
+  product_id VARCHAR2(20),
+  quantity NUMBER(5),
+  cost NUMBER(10,2),
+  CONSTRAINT fk_ip_invoices FOREIGN KEY (invoice_id) REFERENCES Invoices(id),
+  CONSTRAINT fk_ip_products FOREIGN KEY (product_id) REFERENCES Products(id)
 )
