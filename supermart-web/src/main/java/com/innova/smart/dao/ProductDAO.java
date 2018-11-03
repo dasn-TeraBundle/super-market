@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface ProductDAO {
     Product add(Product product) throws SQLException;
+
     Product update(Product product) throws SQLException;
+
     List<Product> findAll();
 }

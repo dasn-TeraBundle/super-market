@@ -4,14 +4,14 @@ package com.innova.smart.beans;
  * Created by Nirupam on 01-11-2018.
  */
 public class Product {
-    private String id, name, category, supploer;
+    private String id, name, category, supplier;
     private int quantity;
     private float price;
 
-    public Product(String name, String category, String supploer, int quantity, float price) {
+    public Product(String name, String category, String supplier, int quantity, float price) {
         this.name = name;
         this.category = category;
-        this.supploer = supploer;
+        this.supplier = supplier;
         this.quantity = quantity;
         this.price = price;
     }
@@ -40,12 +40,12 @@ public class Product {
         this.category = category;
     }
 
-    public String getSupploer() {
-        return supploer;
+    public String getSupplier() {
+        return supplier;
     }
 
-    public void setSupploer(String supploer) {
-        this.supploer = supploer;
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 
     public int getQuantity() {
@@ -86,7 +86,7 @@ public class Product {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
-                ", supploer='" + supploer + '\'' +
+                ", supploer='" + supplier + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 '}';

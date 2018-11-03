@@ -10,5 +10,6 @@ import java.util.List;
 public interface InventoryService {
 
     Product add(Product product);
+
     List<Product> findAll();
 }

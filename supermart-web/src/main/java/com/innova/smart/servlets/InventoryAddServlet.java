@@ -66,7 +66,7 @@ public class InventoryAddServlet extends HttpServlet {
                 p_category = req.getParameter("p_category"),
                 p_supplier = req.getParameter("p_supplier");
         int p_quantity = Integer.parseInt(req.getParameter("p_quantity"));
-        float p_price =Float.parseFloat(req.getParameter("p_price"));
+        float p_price = Float.parseFloat(req.getParameter("p_price"));
 
         Product p = new Product(p_name, p_category, p_supplier, p_quantity, p_price);
         p = inventoryService.add(p);
@@ -76,7 +76,8 @@ public class InventoryAddServlet extends HttpServlet {
         PrintWriter pw = resp.getWriter();
         pw.println("Added Product to Inventory<br/>");
         pw.println("Product ID : " + p.getId() + "<br/>");
-        pw.println("Click <a href='inventory-add'>here</a> to add more products");
+        pw.println("Click <a href='inventory-add'>here</a> to add more products<br/>");
+        pw.println("Click <a href='inventory-list'>here</a> to view all products");
     }
 
     @Override

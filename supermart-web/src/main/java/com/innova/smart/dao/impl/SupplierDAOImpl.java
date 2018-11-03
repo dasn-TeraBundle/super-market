@@ -27,9 +27,9 @@ public class SupplierDAOImpl implements SupplierDAO {
 
         try {
             String sql = "SELECT * FROM Suppliers";
-            try(PreparedStatement ps = conn.prepareCall(sql)) {
-                try(ResultSet rs = ps.executeQuery()) {
-                    while(rs.next()) {
+            try (PreparedStatement ps = conn.prepareCall(sql)) {
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
                         Supplier supplier = new Supplier(
                                 rs.getString("id"),
                                 rs.getString("name")

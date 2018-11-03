@@ -9,7 +9,6 @@ import com.innova.smart.service.InventoryService;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Nirupam on 03-11-2018.
@@ -35,6 +34,6 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public List<Product> findAll() {
-        return null;
+        return productDAO.findAll();
     }
 }

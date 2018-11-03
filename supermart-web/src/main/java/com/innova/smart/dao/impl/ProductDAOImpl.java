@@ -31,7 +31,7 @@ public class ProductDAOImpl implements ProductDAO {
         ps.setString(1, product.getId());
         ps.setString(2, product.getName());
         ps.setString(3, product.getCategory());
-        ps.setString(4, product.getSupploer());
+        ps.setString(4, product.getSupplier());
         ps.setInt(5, product.getQuantity());
         ps.setFloat(6, product.getPrice());
         int r = ps.executeUpdate();
@@ -52,14 +52,23 @@ public class ProductDAOImpl implements ProductDAO {
         List<Product> products = new ArrayList<>();
 
         try {
-            String sql = "SELECT p.id, p.name, c.name, s.name, " +
-                    "p.quantity, p.price " +
-                    "FROM Products p, Product_categories c, Suppliers s " +
-                    " WHERE c.id = p.category AND s.id = p.supplier";
-            try(PreparedStatement ps = conn.prepareCall(sql)) {
-                try(ResultSet rs = ps.executeQuery()) {
+            String sql = "SELECT p.id, p.name, c.name as category, s.name as supplier, " +
+                    "p.quantity, p.price FROM Products p, Product_categories c, Suppliers s " +
+                    "WHERE " +
+                    "c.id = p.category " +
+                    "AND " +
+                    "s.id = p.supplier";
+            try (PreparedStatement ps = conn.prepareCall(sql)) {
+                try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        Product p = new Product()
+                        Product p = new Product(
+                                rs.getString("name"),
+                                rs.getString("category"),
+                                rs.getString("supplier"),
+                                rs.getInt("quantity"),
+                                rs.getFloat("price"));
+                        p.setId(rs.getString("id"));
+                        products.add(p);
                     }
                 }
             }
@@ -68,6 +77,7 @@ public class ProductDAOImpl implements ProductDAO {
             ex.printStackTrace();
         }
 
+        //System.out.println(products);
         return products;
     }
 }

@@ -17,6 +17,11 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <div class="container">
+    <div class="row">
+        <div class="offset-7">
+            <a href="inventory-list">View Inventory List</a>
+        </div>
+    </div>
     <form method="post" action="inventory-add">
         <div class="form-group">
             <label for="p_name">Name</label>
