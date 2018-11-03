@@ -1,4 +1,4 @@
-package com.innova.smart.servlets;
+package com.innova.smart.web.servlets;
 
 import com.innova.smart.dao.Provider;
 import com.innova.smart.service.InventoryService;

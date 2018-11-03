@@ -1,3 +1,11 @@
+CREATE TABLE Users (
+  name VARCHAR2(20) NOT NULL ,
+  role VARCHAR2(15) NOT NULL ,
+  username VARCHAR2(15),
+  password VARCHAR2(40) NOT NULL ,
+  CONSTRAINT pk_users PRIMARY KEY (username)
+);
+
 CREATE TABLE Suppliers (
   id   VARCHAR2(15),
   name VARCHAR2(30) NOT NULL,
