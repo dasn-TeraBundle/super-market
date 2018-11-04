@@ -17,6 +17,7 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <div class="container">
+    <div class="p-2"></div>
     <h3 class="text-center">List of All Products</h3>
     <div class="table-responsive">
         <table class="table table-striped">

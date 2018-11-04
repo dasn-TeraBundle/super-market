@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isErrorPage="true"  session="false"%>
 <%--
   Created by IntelliJ IDEA.
   User: Nirupam
@@ -16,8 +16,8 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<div align="container">
-    <div style="padding-top: 3%">
+<div class="container">
+    <div class="p-2">
         <h3 style="color:red">ERROR !</h3>
         You don't have access to this page.<br/>
         Go to home page.

@@ -1,6 +1,7 @@
 package com.innova.smart.web.security;
 
 import com.innova.smart.beans.User;
+import com.innova.smart.exceptions.UnauthorizedException;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -30,6 +31,7 @@ public class AdminFilter implements Filter {
         } else {
             if (user.getRole() != User.Role.ADMIN) {
                 resp.setStatus(401);
+                throw new UnauthorizedException("You are not authorized");
             } else
                 chain.doFilter(request, response);
         }

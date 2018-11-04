@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User add(User user) throws SQLException {
         String sql = "INSERT INTO USERS(NAME, ROLE, USERNAME, PASSWORD) " +
-                "VALUES ('?', '?', '?', '?')";
+                "VALUES (?, ?, ?, ?)";
 
         PreparedStatement ps = conn.prepareCall(sql);
         ps.setString(1, user.getName());

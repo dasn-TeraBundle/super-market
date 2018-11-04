@@ -17,11 +17,8 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <div class="container">
-    <div class="row">
-        <div class="offset-7">
-            <a href="inventory-list">View Inventory List</a>
-        </div>
-    </div>
+    <div class="p-2"></div>
+
     <form method="post" action="invoice-create">
         <div class="form-group">
             <label for="pr_1">Name</label>
@@ -45,7 +42,7 @@
             <label for="quant_2">Quantity</label>
             <input type="number" min="1" id="quant_2" name="quant_2" />
         </div>
-        <button type="submit" class="btn btn-primary">Add Product</button>
+        <button type="submit" class="btn btn-primary">Generate Bill</button>
     </form>
 </div>
 </body>
