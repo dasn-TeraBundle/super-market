@@ -3,9 +3,9 @@ package com.innova.smart.exceptions;
 /**
  * Created by Nirupam on 03-11-2018.
  */
-public class UserException extends AppException {
+public class AppException extends RuntimeException {
 
-    public UserException(String s) {
+    public AppException(String s) {
         super(s);
     }
 }

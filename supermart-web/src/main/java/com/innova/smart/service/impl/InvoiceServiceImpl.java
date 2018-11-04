@@ -6,6 +6,7 @@ import com.innova.smart.dao.InvoiceDAO;
 import com.innova.smart.dao.ProductDAO;
 import com.innova.smart.dao.impl.InvoiceDAOImpl;
 import com.innova.smart.dao.impl.ProductDAOImpl;
+import com.innova.smart.exceptions.InvoiceException;
 import com.innova.smart.service.InvoiceService;
 
 import java.sql.Connection;
@@ -51,8 +52,7 @@ public class InvoiceServiceImpl implements InvoiceService {
             });
 
             if (allowedProducts.size() != products.size()) {
-                System.err.println("Some Products Quantity is more than avaialble in Stock");
-                return null;
+                throw new InvoiceException("Some Products Quantity is more than avaialble in Stock");
             }
 
             Invoice inv = new Invoice("OD" + System.currentTimeMillis(), new Date());
@@ -70,9 +70,9 @@ public class InvoiceServiceImpl implements InvoiceService {
         try {
             Invoice inv = invoiceDAO.findByID(id);
             if (inv == null)
-                throw new IllegalArgumentException("Please check if Invoice Number is valid");
+                throw new InvoiceException("Please check if Invoice Number is valid");
             else if (inv.getProducts() == null)
-                throw new IllegalStateException("Blank Invoice");
+                throw new InvoiceException("Blank Invoice");
             else
                 return inv;
         } catch (SQLException ex) {

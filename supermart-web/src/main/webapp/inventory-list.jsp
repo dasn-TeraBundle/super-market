@@ -18,7 +18,9 @@
 
 <div class="container">
     <div class="p-2"></div>
-    <h3 class="text-center">List of All Products</h3>
+    <h3 class="text-center">Products</h3>
+
+    <h5>Products With Good Stock</h5>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -32,6 +34,56 @@
             </thead>
             <tbody>
             <c:forEach items="${ products }" var="p">
+                <tr><td>${p.name}</td>
+                    <td>${p.category}</td>
+                    <td>${p.supplier}</td>
+                    <td>${p.quantity}</td>
+                    <td>${p.price}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
+    <h5>Products with low stock</h5>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${ pr_low_stock }" var="p">
+                <tr><td>${p.name}</td>
+                    <td>${p.category}</td>
+                    <td>${p.supplier}</td>
+                    <td>${p.quantity}</td>
+                    <td>${p.price}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
+    <h5>Products Out of stock</h5>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${ pr_no_stock }" var="p">
                 <tr><td>${p.name}</td>
                     <td>${p.category}</td>
                     <td>${p.supplier}</td>

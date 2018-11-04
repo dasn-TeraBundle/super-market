@@ -53,6 +53,8 @@ public class InventoryListServlet extends HttpServlet {
         products_all.removeIf(p -> p.getQuantity() < 5);
 
         req.setAttribute("products", products_all);
+        req.setAttribute("pr_low_stock", products_lowonstock);
+        req.setAttribute("pr_no_stock", products_outofstock);
 
         RequestDispatcher rd = req.getRequestDispatcher("inventory-list.jsp");
         rd.forward(req, resp);
