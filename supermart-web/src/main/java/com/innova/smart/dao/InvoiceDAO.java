@@ -10,4 +10,5 @@ import java.sql.SQLException;
 public interface InvoiceDAO {
 
     Invoice create(Invoice invoice) throws SQLException;
+    Invoice findByID(String id) throws SQLException;
 }

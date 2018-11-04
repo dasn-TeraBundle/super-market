@@ -11,4 +11,5 @@ import java.util.List;
 public interface InvoiceService {
 
     Invoice create(List<Product> products);
+    Invoice find(String id);
 }

@@ -1,5 +1,6 @@
 package com.innova.smart.web.servlets;
 
+import com.innova.smart.beans.Invoice;
 import com.innova.smart.beans.Product;
 import com.innova.smart.dao.Provider;
 import com.innova.smart.service.InventoryService;
@@ -71,7 +72,9 @@ public class InvoiceServlet extends HttpServlet {
             } else
                 break;
         }
-        invoiceService.create(prods);
+
+        Invoice inv = invoiceService.create(prods);
+        resp.sendRedirect("invoice?id=" + inv.getId());
     }
 
     @Override

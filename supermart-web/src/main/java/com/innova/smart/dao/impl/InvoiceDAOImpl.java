@@ -5,7 +5,8 @@ import com.innova.smart.beans.Product;
 import com.innova.smart.dao.InvoiceDAO;
 
 import java.sql.*;
-import java.util.Arrays;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * Created by Nirupam on 03-11-2018.
@@ -80,5 +81,42 @@ public class InvoiceDAOImpl implements InvoiceDAO {
         conn.commit();
 
         return invoice;
+    }
+
+    @Override
+    public Invoice findByID(String id) throws SQLException {
+        Invoice inv = new Invoice();
+        inv.setId(id);
+
+        String sql = "SELECT i.id, i.billing_date, " +
+                "ip.quantity AS quantity, ip.cost as cost, "+
+                "p.name as name " +
+                "FROM Invoices i, Invoices_Products ip, Products p "+
+                "WHERE i.id = ? " +
+                "AND i.id = ip.invoice_id " +
+                "AND ip.product_id = p.id";
+        //System.out.println(sql);
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                List<Product> products = new ArrayList<>();
+                while (rs.next()) {
+                    inv.setBillingDate(new java.util.Date(rs.getDate("billing_date").getTime()));
+                    Product p = new Product(
+                            rs.getString("name"),
+                            "",
+                            "",
+                            rs.getInt("quantity"),
+                            rs.getFloat("cost"));
+                    products.add(p);
+                }
+                if (products.size() > 0)
+                    inv.setProducts(products);
+            }
+        }
+
+        if (inv.getBillingDate() == null)
+            return null;
+        return inv;
     }
 }

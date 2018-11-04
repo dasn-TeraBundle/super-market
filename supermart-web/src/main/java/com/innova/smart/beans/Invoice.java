@@ -12,6 +12,9 @@ public class Invoice {
     private Date billingDate;
     private List<Product> products;
 
+    public Invoice() {
+    }
+
     public Invoice(String id, Date billingDate) {
         this.id = id;
         this.billingDate = billingDate;

@@ -64,4 +64,20 @@ public class InvoiceServiceImpl implements InvoiceService {
             return null;
         }
     }
+
+    @Override
+    public Invoice find(String id) {
+        try {
+            Invoice inv = invoiceDAO.findByID(id);
+            if (inv == null)
+                throw new IllegalArgumentException("Please check if Invoice Number is valid");
+            else if (inv.getProducts() == null)
+                throw new IllegalStateException("Blank Invoice");
+            else
+                return inv;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new IllegalArgumentException("Try Later...");
+        }
+    }
 }
