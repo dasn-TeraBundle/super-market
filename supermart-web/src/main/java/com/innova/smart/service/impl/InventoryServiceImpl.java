@@ -36,4 +36,32 @@ public class InventoryServiceImpl implements InventoryService {
     public List<Product> findAll() {
         return productDAO.findAll();
     }
+
+    @Override
+    public Product findById(String id) {
+        try {
+            Product p = productDAO.findByID(id);
+            if (p == null)
+                throw new InventoryException("Wrong Product ID");
+            else
+                return p;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new InventoryException("Something went wrong. Try Later");
+        }
+    }
+
+    @Override
+    public Product update(Product product) {
+        try {
+            Product p = productDAO.update(product);
+            if (p == null)
+                throw new InventoryException("Wrong Product ID");
+            else
+                return p;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new InventoryException("Something went wrong. Try Later");
+        }
+    }
 }

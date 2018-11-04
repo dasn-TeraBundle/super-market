@@ -12,4 +12,6 @@ public interface InventoryService {
     Product add(Product product);
 
     List<Product> findAll();
+    Product findById(String id);
+    Product update(Product product);
 }

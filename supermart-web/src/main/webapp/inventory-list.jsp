@@ -30,6 +30,7 @@
                 <th>Supplier</th>
                 <th>Quantity</th>
                 <th>Price</th>
+                <th>Manage</th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@
                     <td>${p.supplier}</td>
                     <td>${p.quantity}</td>
                     <td>${p.price}</td>
+                    <td><a href="inventory-update?id=${p.id}">Update</a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -55,6 +57,7 @@
                 <th>Supplier</th>
                 <th>Quantity</th>
                 <th>Price</th>
+                <th>Manage</th>
             </tr>
             </thead>
             <tbody>
@@ -64,6 +67,7 @@
                     <td>${p.supplier}</td>
                     <td>${p.quantity}</td>
                     <td>${p.price}</td>
+                    <td><a href="inventory-update?id=${p.id}">Update</a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -80,6 +84,7 @@
                 <th>Supplier</th>
                 <th>Quantity</th>
                 <th>Price</th>
+                <th>Manage</th>
             </tr>
             </thead>
             <tbody>
@@ -89,6 +94,7 @@
                     <td>${p.supplier}</td>
                     <td>${p.quantity}</td>
                     <td>${p.price}</td>
+                    <td><a href="inventory-update?id=${p.id}">Update</a></td>
                 </tr>
             </c:forEach>
             </tbody>

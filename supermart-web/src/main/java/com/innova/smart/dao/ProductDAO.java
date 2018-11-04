@@ -15,4 +15,6 @@ public interface ProductDAO {
 
     List<Product> findAll();
     List<Product> findAllIn(List<String> pIds);
+    Product findByID(String id) throws SQLException;
+
 }

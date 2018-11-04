@@ -41,6 +41,22 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Product update(Product product) throws SQLException {
+        String sql = "UPDATE Products SET " +
+                "name = ?, category = ?, supplier = ?, quantity = ?, price = ? " +
+                "WHERE id = ?";
+
+        PreparedStatement ps = conn.prepareCall(sql);
+        ps.setString(1, product.getName());
+        ps.setString(2, product.getCategory());
+        ps.setString(3, product.getSupplier());
+        ps.setInt(4, product.getQuantity());
+        ps.setFloat(5, product.getPrice());
+        ps.setString(6, product.getId());
+        int r = ps.executeUpdate();
+        conn.commit();
+
+        if (r == 1)
+            return product;
         return null;
     }
 
@@ -114,5 +130,28 @@ public class ProductDAOImpl implements ProductDAO {
         }
 
         return products;
+    }
+
+    @Override
+    public Product findByID(String id) throws SQLException {
+        Product p = null;
+        String sql = "SELECT * FROM Products WHERE id = ?";
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    p = new Product(
+                            rs.getString("name"),
+                            rs.getString("category"),
+                            rs.getString("supplier"),
+                            rs.getInt("quantity"),
+                            rs.getFloat("price"));
+                    p.setId(rs.getString("id"));
+                }
+            }
+        }
+
+        return p;
     }
 }
