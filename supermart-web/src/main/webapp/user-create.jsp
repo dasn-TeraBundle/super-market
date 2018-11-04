@@ -22,13 +22,29 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required />
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" required />
+        </div>
+        <div class="form-group">
+            <label for="adress">Address</label>
+            <textarea id="adress" name="adress" rows="3" required ></textarea>
         </div>
         <div class="form-group">
             <label for="role">Role</label>
             <select id="role" name="role">
                 <option value="CASHIER">CASHIER</option>
-                <option value="ADMIN">CASHIER</option>
+                <!--<option value="ADMIN">CASHIER</option>-->
             </select>
+        </div>
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday" required />
+            <label for="employment_date">Birthday</label>
+            <input type="date" id="employment_date" name="employment_date" required />
+        </div>
+        <div class="form-group">
+            <label for="salary">Username</label>
+            <input type="number" id="salary" name="salary" min="1" step="0.5" required />
         </div>
         <div class="form-group">
             <label for="username">Username</label>

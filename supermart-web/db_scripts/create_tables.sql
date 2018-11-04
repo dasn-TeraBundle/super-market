@@ -1,8 +1,14 @@
 CREATE TABLE Users (
-  name VARCHAR2(20) NOT NULL ,
-  role VARCHAR2(15) NOT NULL ,
-  username VARCHAR2(15),
-  password VARCHAR2(40) NOT NULL ,
+  name            VARCHAR2(20) NOT NULL,
+  surname         VARCHAR2(30),
+  role            VARCHAR2(15) NOT NULL,
+  address         VARCHAR2(150),
+  salary          NUMBER(5, 2),
+  birthday        DATE,
+  employment_date DATE,
+  phone           VARCHAR2(15),
+  username        VARCHAR2(15),
+  password        VARCHAR2(100) NOT NULL,
   CONSTRAINT pk_users PRIMARY KEY (username)
 );
 
@@ -31,16 +37,16 @@ CREATE TABLE Products (
 );
 
 CREATE TABLE Invoices (
-  id VARCHAR2(20),
+  id           VARCHAR2(20),
   billing_date TIMESTAMP,
   CONSTRAINT pk_invoices PRIMARY KEY (id)
 );
 
-create TABLE Invoices_Products (
+CREATE TABLE Invoices_Products (
   invoice_id VARCHAR2(20),
   product_id VARCHAR2(20),
-  quantity NUMBER(5),
-  cost NUMBER(10,2),
-  CONSTRAINT fk_ip_invoices FOREIGN KEY (invoice_id) REFERENCES Invoices(id),
-  CONSTRAINT fk_ip_products FOREIGN KEY (product_id) REFERENCES Products(id)
+  quantity   NUMBER(5),
+  cost       NUMBER(10, 2),
+  CONSTRAINT fk_ip_invoices FOREIGN KEY (invoice_id) REFERENCES Invoices (id),
+  CONSTRAINT fk_ip_products FOREIGN KEY (product_id) REFERENCES Products (id)
 )

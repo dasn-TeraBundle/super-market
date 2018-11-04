@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Nirupam on 01-11-2018.
@@ -24,6 +26,7 @@ import java.sql.SQLException;
 public class RegisterServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy");
 
     private Connection con;
     private UserService userService;
@@ -52,11 +55,28 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name"),
+                surname = req.getParameter("surname"),
+                address = req.getParameter("address"),
+                bd = req.getParameter("birthday"),
+                empd = req.getParameter("employment_date"),
                 role = req.getParameter("role"),
                 username = req.getParameter("username"),
                 password = req.getParameter("password");
+        float salary = Float.parseFloat(req.getParameter("salary"));
 
         User user = new User(name, role, username, password);
+        user.setSurname(surname);
+        user.setAddress(address);
+        user.setSalary(salary);
+        try {
+            Date birthday = DATE_FORMATTER.parse(bd);
+            Date emp_date = DATE_FORMATTER.parse(empd);
+            user.setBirthday(birthday);
+            user.setEmploymentDate(emp_date);
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Required Date Format dd-MM-yyyy");
+        }
+
         user = userService.register(user);
 
         if (user != null)
